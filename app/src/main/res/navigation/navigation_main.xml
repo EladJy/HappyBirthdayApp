@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/navigation_main"
+    app:startDestination="@id/detailsFragment">
+
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.ej.happybirthdayapp.ui.fragments.details.DetailsFragment"
+        android:label="DetailsFragment" />
+    <fragment
+        android:id="@+id/birthdayFragment"
+        android:name="com.ej.happybirthdayapp.ui.fragments.birthday.BirthdayFragment"
+        android:label="BirthdayFragment" />
+</navigation>

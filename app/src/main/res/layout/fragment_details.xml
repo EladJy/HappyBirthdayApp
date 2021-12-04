@@ -60,6 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:background="@drawable/pink_button"
         android:textColor="@color/white"
+        android:enabled="false"
         android:text="@string/details_show_birthday_screen"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"

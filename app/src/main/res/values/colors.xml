@@ -14,5 +14,6 @@
     <color name="yellow_border">#febe20</color>
     <color name="blue_border">#8bd3e4</color>
     <color name="pink_button">#ef7b7b</color>
+    <color name="pink_button_disabled">#7E7E7E</color>
     <color name="text_color">#394562</color>
 </resources>
