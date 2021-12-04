@@ -44,6 +44,7 @@ class DetailsFragment : BaseFragment<DetailsMvpView>(), DetailsMvpView {
         super.onViewCreated(view, savedInstanceState)
         setToolbar()
         initViews()
+        setStatusBarColor(R.color.blue_bg)
     }
 
     private fun setToolbar() {

@@ -25,6 +25,7 @@ import com.ej.happybirthdayapp.utils.getBitmapFromView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+
 @AndroidEntryPoint
 class BirthdayFragment : BaseFragment<BirthdayMvpView>(), BirthdayMvpView {
 
@@ -107,6 +108,7 @@ class BirthdayFragment : BaseFragment<BirthdayMvpView>(), BirthdayMvpView {
             viewBinding.birthdayBabyImageContainer.foreground =
                 AppCompatResources.getDrawable(requireActivity(), it.circleBorder)
             viewBinding.birthdayImageBackground.setImageResource(it.background)
+            setStatusBarColor(it.backgroundColor)
         }
     }
 
