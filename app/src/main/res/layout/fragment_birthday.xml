@@ -7,6 +7,35 @@
     android:layout_height="match_parent"
     android:background="@color/yellow_bg">
 
+    <FrameLayout
+        android:id="@+id/birthdayBabyImageContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="15dp"
+        android:foreground="@drawable/circle_border_yellow"
+        app:layout_constraintBottom_toTopOf="@id/birthdayNanitLogo"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/birthdayImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:cropToPadding="true"
+            android:src="@drawable/default_place_holder_yellow" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/birthdayImageBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/i_os_bg_elephant" />
+
     <ImageView
         android:id="@+id/birthdayGoBack"
         android:layout_width="wrap_content"
@@ -30,6 +59,7 @@
         android:maxLines="2"
         android:textColor="@color/text_color"
         android:textSize="21sp"
+        android:textAllCaps="true"
         app:layout_constraintBottom_toTopOf="@id/birthdayAge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,35 +121,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/birthdayAge" />
 
-    <FrameLayout
-        android:id="@+id/birthdayBabyImageContainer"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="15dp"
-        android:foreground="@drawable/circle_border_yellow"
-        app:layout_constraintBottom_toTopOf="@id/birthdayNanitLogo"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:id="@+id/birthdayImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:cropToPadding="true"
-            android:src="@drawable/default_place_holder_yellow" />
-    </FrameLayout>
-
-    <ImageView
-        android:id="@+id/birthdayImageBackground"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/i_os_bg_elephant" />
-
     <ImageView
         android:id="@+id/birthdayCameraIcon"
         android:layout_width="wrap_content"
@@ -130,7 +131,7 @@
         app:layout_constraintHorizontal_bias="0.875"
         app:layout_constraintStart_toStartOf="@id/birthdayBabyImageContainer"
         app:layout_constraintTop_toTopOf="@id/birthdayBabyImageContainer"
-        app:layout_constraintVertical_bias="0.095" />
+        app:layout_constraintVertical_bias="0.1" />
 
 
     <ImageView

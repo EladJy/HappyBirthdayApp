@@ -45,6 +45,7 @@ dependencies {
     def hilt_version = "2.38.1"
     def lifecycle_version = "2.4.0"
     def jodetime_version = "2.10.12.2"
+    def coroutines = "1.5.0"
 
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -72,4 +73,6 @@ dependencies {
 
     //JodaTime
     implementation "net.danlew:android.joda:$jodetime_version"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 }

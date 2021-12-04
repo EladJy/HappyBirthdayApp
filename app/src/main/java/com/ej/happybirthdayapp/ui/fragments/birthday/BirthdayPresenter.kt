@@ -11,6 +11,9 @@ import com.ej.happybirthdayapp.utils.ImagePicker
 import com.ej.happybirthdayapp.utils.StringsMapper
 import com.ej.happybirthdayapp.utils.getMonthsFromNow
 import com.ej.happybirthdayapp.utils.getYearsFromNow
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.joda.time.DateTime
 import javax.inject.Inject
 
@@ -96,9 +99,16 @@ class BirthdayPresenter @Inject constructor(private val imagePicker: ImagePicker
     }
 
     fun birthdayShareBtnClicked(bitmapFromView: Bitmap?) {
-        val image = imagePicker.saveImage(bitmapFromView)
-        mvpView?.shareImage(image)
+        scope.launch {
+            val image = saveImage(bitmapFromView)
+            mvpView?.shareImage(image)
+        }
     }
+
+    private suspend fun saveImage(bitmapFromView: Bitmap?) = withContext(Dispatchers.IO) {
+        imagePicker.saveImage(bitmapFromView)
+    }
+
 
     fun imageFromPickerArrived(imageUri: Uri?) {
         if (imageUri != null) {

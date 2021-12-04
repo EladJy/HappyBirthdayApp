@@ -10,7 +10,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.view.isVisible
+import androidx.core.view.isInvisible
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.ej.happybirthdayapp.R
@@ -60,16 +60,16 @@ class BirthdayFragment : BaseFragment<BirthdayMvpView>(), BirthdayMvpView {
             findNavController().popBackStack()
         }
         viewBinding.birthdayShareBtn.setOnClickListener {
-            setViewsForSnapshot(false)
+            hideViewsForSnapshot(true)
             val bitmap = viewBinding.birthdayContainer.getBitmapFromView()
             presenter.birthdayShareBtnClicked(bitmap)
         }
     }
 
-    private fun setViewsForSnapshot(isVisible: Boolean) {
-        viewBinding.birthdayShareBtn.isVisible = isVisible
-        viewBinding.birthdayCameraIcon.isVisible = isVisible
-        viewBinding.birthdayGoBack.isVisible = isVisible
+    private fun hideViewsForSnapshot(isInvisible: Boolean) {
+        viewBinding.birthdayShareBtn.isInvisible = isInvisible
+        viewBinding.birthdayCameraIcon.isInvisible = isInvisible
+        viewBinding.birthdayGoBack.isInvisible = isInvisible
     }
 
     override fun showImagePicker(intent: Intent?) {
@@ -117,7 +117,7 @@ class BirthdayFragment : BaseFragment<BirthdayMvpView>(), BirthdayMvpView {
         shareIntent.type = "image/jpeg"
         shareIntent.putExtra(Intent.EXTRA_STREAM, image)
         startActivity(Intent.createChooser(shareIntent, getString(R.string.share_the_news_text)))
-        setViewsForSnapshot(true)
+        hideViewsForSnapshot(false)
     }
 
     override fun setCroppedImage(imageUri: Uri?) {
