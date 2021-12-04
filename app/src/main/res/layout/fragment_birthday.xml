@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/yellow_bg">
+
+    <ImageView
+        android:id="@+id/birthdayGoBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="3dp"
+        android:padding="8dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/arrow_back_blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/birthdayTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="50dp"
+        android:gravity="center"
+        android:letterSpacing="-0.02"
+        android:maxLines="2"
+        android:textColor="@color/text_color"
+        android:textSize="21sp"
+        app:layout_constraintBottom_toTopOf="@id/birthdayAge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:fontFamily="@font/benton_sans_medium"
+        tools:text="TODAY ELAD JARBY IS" />
+
+    <ImageView
+        android:id="@+id/birthdayLeftSwirls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/left_swirls"
+        app:layout_constraintBottom_toBottomOf="@id/birthdayAge"
+        app:layout_constraintEnd_toStartOf="@id/birthdayAge"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/birthdayAge" />
+
+    <ImageView
+        android:id="@+id/birthdayAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="22dp"
+        tools:src="@drawable/age_number_5"
+        app:layout_constraintBottom_toTopOf="@id/birthdaySubtitle"
+        app:layout_constraintEnd_toStartOf="@id/birthdayRightSwirls"
+        app:layout_constraintStart_toEndOf="@id/birthdayLeftSwirls"
+        app:layout_constraintTop_toBottomOf="@id/birthdayTitle" />
+
+    <ImageView
+        android:id="@+id/birthdayRightSwirls"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/right_swirls"
+        app:layout_constraintBottom_toBottomOf="@id/birthdayAge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/birthdayAge"
+        app:layout_constraintTop_toTopOf="@id/birthdayAge" />
+
+    <TextView
+        android:id="@+id/birthdaySubtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:letterSpacing="-0.02"
+        tools:text="MONTHS OLD!"
+        android:textColor="@color/text_color"
+        android:textSize="21sp"
+        android:fontFamily="@font/benton_sans_medium"
+        app:layout_constraintBottom_toTopOf="@id/birthdayBabyImageContainer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/birthdayAge" />
+
+    <FrameLayout
+        android:id="@+id/birthdayBabyImageContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="15dp"
+        android:foreground="@drawable/circle_border_yellow"
+        app:layout_constraintBottom_toTopOf="@id/birthdayNanitLogo"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/birthdayImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:cropToPadding="true"
+            android:src="@drawable/default_place_holder_yellow" />
+    </FrameLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/i_os_bg_elephant" />
+
+    <ImageView
+        android:id="@+id/birthdayCameraIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/camera_icon_yellow"
+        app:layout_constraintBottom_toBottomOf="@id/birthdayBabyImageContainer"
+        app:layout_constraintEnd_toEndOf="@id/birthdayBabyImageContainer"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="@id/birthdayBabyImageContainer"
+        app:layout_constraintTop_toTopOf="@id/birthdayBabyImageContainer"
+        app:layout_constraintVertical_bias="0.125" />
+
+
+    <ImageView
+        android:id="@+id/birthdayNanitLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/nanit_logo"
+        app:layout_constraintBottom_toTopOf="@id/birthdayShareBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/birthdayShareBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/pink_button"
+        android:drawableEnd="@drawable/share_white_small"
+        android:paddingStart="20dp"
+        android:paddingEnd="12dp"
+        android:text="@string/share_the_news_text"
+        android:textAllCaps="false"
+        android:fontFamily="@font/benton_sans_regular"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
