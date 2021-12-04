@@ -96,6 +96,8 @@ class BirthdayFragment : BaseFragment<BirthdayMvpView>(), BirthdayMvpView {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
                 if (result.resultCode == Activity.RESULT_OK) {
                     presenter.imageFromPickerArrived(result.data?.data)
+                } else {
+                    presenter.removeImageUri()
                 }
             }
     }

@@ -45,6 +45,7 @@ class BirthdayPresenter @Inject constructor(private val imagePicker: ImagePicker
         mvpView?.setCroppedImage(birthdayDetails?.imageUri)
     }
 
+
     private fun setScreenElements() {
         val elements = when (birthdayDetails?.birthdayScreenStyle) {
             BirthdayScreenStyle.FOX -> BirthdayScreenElements(R.drawable.i_os_bg_fox,
@@ -117,5 +118,9 @@ class BirthdayPresenter @Inject constructor(private val imagePicker: ImagePicker
         imagePicker.imageUri?.let {
             mvpView?.setCroppedImage(imagePicker.imageUri)
         }
+    }
+
+    fun removeImageUri() {
+        imagePicker.imageUri = null
     }
 }
