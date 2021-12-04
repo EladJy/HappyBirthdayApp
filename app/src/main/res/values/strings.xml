@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">HappyBirthdayApp</string>
+    <!-- Details screen strings -->
+    <string name="details_toolbar_title">Happy Birthday</string>
+    <string name="details_full_name">Full name</string>
+    <string name="details_date_of_birth">Date of birth</string>
+    <string name="details_show_birthday_screen">Show birthday screen</string>
+
+    <!-- Birthday screen strings -->
+    <string name="birthday_name_title">TODAY %s IS</string>
+    <string name="birthday_age_month">MONTH OLD!</string>
+    <string name="birthday_age_months">MONTHS OLD!</string>
+    <string name="birthday_age_year">YEAR OLD!</string>
+    <string name="birthday_age_years">YEARS OLD!</string>
+    <string name="share_the_news_text">Share the news</string>
 </resources>
