@@ -16,8 +16,8 @@ fun DateTime.getMonthsFromNow(): Int {
 }
 
 fun View.getBitmapFromView(): Bitmap? {
-    var bitmap = Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888)
-    var canvas = Canvas(bitmap)
+    val bitmap = Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bitmap)
     this.draw(canvas)
     return bitmap
 }

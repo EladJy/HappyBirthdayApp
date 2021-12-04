@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.annotation.StringRes
 import javax.inject.Inject
 
-class StringsMapper @Inject constructor(private val context: Context) {
+class StringsMapper @Inject constructor(context: Context) {
+    
     private val resources = context.resources
 
     fun getString(@StringRes resId: Int): String = resources.getString(resId)

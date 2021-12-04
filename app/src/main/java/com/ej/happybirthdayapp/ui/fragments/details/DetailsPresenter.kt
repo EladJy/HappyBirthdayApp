@@ -40,7 +40,7 @@ class DetailsPresenter @Inject constructor(private val imagePicker: ImagePicker)
     fun datePickerClicked() {
         val calendar = Calendar.getInstance()
         val date =
-            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 calendar[Calendar.YEAR] = year
                 calendar[Calendar.MONTH] = monthOfYear
                 calendar[Calendar.DAY_OF_MONTH] = dayOfMonth
@@ -89,7 +89,7 @@ class DetailsPresenter @Inject constructor(private val imagePicker: ImagePicker)
         mvpView?.navigateToBirthdayScreen(bundle)
     }
 
-    fun getBirthdayScreenStyle(): BirthdayScreenStyle {
+    private fun getBirthdayScreenStyle(): BirthdayScreenStyle {
         return BirthdayScreenStyle.values().random()
     }
 
