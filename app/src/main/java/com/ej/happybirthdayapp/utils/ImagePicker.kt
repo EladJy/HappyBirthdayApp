@@ -33,18 +33,12 @@ class ImagePicker @Inject constructor(private val context: Context) {
 
     private fun setCameraIntents(cameraIntents: MutableList<Intent>) {
         cameraImageFile = null
-        val tempFile = File(
-            context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
-            System.currentTimeMillis().toString() + ".jpeg"
-        )
+        val tempFile = File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+            System.currentTimeMillis().toString() + ".jpeg")
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.flags = Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-            imageUri = FileProvider.getUriForFile(
-                context,
-                context.packageName,
-                tempFile
-            )
+            imageUri = FileProvider.getUriForFile(context, context.packageName, tempFile)
             intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
         } else {
             imageUri = Uri.fromFile(tempFile)
@@ -55,7 +49,8 @@ class ImagePicker @Inject constructor(private val context: Context) {
     }
 
     fun saveImage(image: Bitmap?): Uri? {
-        val file = File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), System.currentTimeMillis().toString() + ".jpeg")
+        val file = File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+            System.currentTimeMillis().toString() + ".jpeg")
         var uri: Uri? = null
         try {
             val stream = FileOutputStream(file)

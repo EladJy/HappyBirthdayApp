@@ -7,7 +7,7 @@ import org.joda.time.DateTime
 import org.joda.time.Months
 import org.joda.time.Years
 
-class Extensions {}fun DateTime.getYearsFromNow(): Int {
+fun DateTime.getYearsFromNow(): Int {
     return Years.yearsBetween(this, DateTime()).years
 }
 
@@ -16,8 +16,7 @@ fun DateTime.getMonthsFromNow(): Int {
 }
 
 fun View.getBitmapFromView(): Bitmap? {
-    var bitmap =
-        Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888)
+    var bitmap = Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888)
     var canvas = Canvas(bitmap)
     this.draw(canvas)
     return bitmap

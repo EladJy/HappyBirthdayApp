@@ -4,9 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import com.ej.happybirthdayapp.R
-import com.ej.happybirthdayapp.model.BirthdayAge
-import com.ej.happybirthdayapp.model.BirthdayDetails
-import com.ej.happybirthdayapp.model.TimeType
+import com.ej.happybirthdayapp.model.*
 import com.ej.happybirthdayapp.ui.base.BasePresenter
 import com.ej.happybirthdayapp.ui.base.BaseView
 import com.ej.happybirthdayapp.utils.ImagePicker
@@ -23,6 +21,7 @@ interface BirthdayMvpView : BaseView {
     fun setCroppedImage(imageUri: Uri?)
     fun showImagePicker(intent: Intent?)
     fun shareImage(image: Uri?)
+    fun setScreenElements(elements: BirthdayScreenElements?)
 
 }
 
@@ -37,15 +36,39 @@ class BirthdayPresenter @Inject constructor(private val imagePicker: ImagePicker
         val birthdayTitle = birthdayDetails?.fullName?.let {
             stringsMapper.getString(R.string.birthday_name_title, it)
         }
+        setScreenElements()
         mvpView?.setBirthdayTitle(birthdayTitle)
         calculateDiffFromBirthday()
         mvpView?.setCroppedImage(birthdayDetails?.imageUri)
     }
 
-    fun calculateDiffFromBirthday() {
+    private fun setScreenElements() {
+        val elements = when (birthdayDetails?.birthdayScreenStyle) {
+            BirthdayScreenStyle.FOX -> BirthdayScreenElements(R.drawable.i_os_bg_fox,
+                R.color.blue_bg,
+                R.drawable.default_place_holder_green,
+                R.drawable.camera_icon_green,
+                R.drawable.circle_border_green)
+            BirthdayScreenStyle.ELEPHANT -> BirthdayScreenElements(R.drawable.i_os_bg_elephant,
+                R.color.yellow_bg,
+                R.drawable.default_place_holder_yellow,
+                R.drawable.camera_icon_yellow,
+                R.drawable.circle_border_yellow)
+            BirthdayScreenStyle.PELICAN -> BirthdayScreenElements(R.drawable.i_os_bg_pelican_2,
+                R.color.blue_bg,
+                R.drawable.default_place_holder_blue,
+                R.drawable.camera_icon_blue,
+                R.drawable.circle_border_blue)
+            else -> null
+        }
+        mvpView?.setScreenElements(elements)
+    }
+
+    private fun calculateDiffFromBirthday() {
         val birthdayDateTime = DateTime(birthdayDetails?.birthdayTimestamp)
         val birthdayAge = when {
-            birthdayDateTime.getYearsFromNow() > 0 -> BirthdayAge(birthdayDateTime.getYearsFromNow(), TimeType.YEARS)
+            birthdayDateTime.getYearsFromNow() > 0 -> BirthdayAge(birthdayDateTime.getYearsFromNow(),
+                TimeType.YEARS)
             else -> BirthdayAge(birthdayDateTime.getMonthsFromNow(), TimeType.MONTHS)
         }
         val subTitle = getSubtitleByAge(birthdayAge)
@@ -55,10 +78,14 @@ class BirthdayPresenter @Inject constructor(private val imagePicker: ImagePicker
 
     private fun getSubtitleByAge(birthdayAge: BirthdayAge): String {
         return when {
-            birthdayAge.age >= 0 && birthdayAge.timeType == TimeType.MONTHS -> stringsMapper.getString(R.string.birthday_age_month)
-            birthdayAge.age > 1 && birthdayAge.timeType == TimeType.MONTHS -> stringsMapper.getString(R.string.birthday_age_months)
-            birthdayAge.age >= 0 && birthdayAge.timeType == TimeType.YEARS -> stringsMapper.getString(R.string.birthday_age_year)
-            birthdayAge.age > 1 && birthdayAge.timeType == TimeType.YEARS -> stringsMapper.getString(R.string.birthday_age_years)
+            birthdayAge.age > 1 && birthdayAge.timeType == TimeType.MONTHS -> stringsMapper.getString(
+                R.string.birthday_age_months)
+            birthdayAge.age in 0..1 && birthdayAge.timeType == TimeType.MONTHS -> stringsMapper.getString(
+                R.string.birthday_age_month)
+            birthdayAge.age > 1 && birthdayAge.timeType == TimeType.YEARS -> stringsMapper.getString(
+                R.string.birthday_age_years)
+            birthdayAge.age in 0..1 && birthdayAge.timeType == TimeType.YEARS -> stringsMapper.getString(
+                R.string.birthday_age_year)
             else -> ""
         }
     }

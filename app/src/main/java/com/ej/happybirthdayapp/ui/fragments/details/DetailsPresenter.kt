@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import com.ej.happybirthdayapp.model.BirthdayDetails
+import com.ej.happybirthdayapp.model.BirthdayScreenStyle
 import com.ej.happybirthdayapp.ui.base.BasePresenter
 import com.ej.happybirthdayapp.ui.base.BaseView
 import com.ej.happybirthdayapp.utils.ImagePicker
@@ -18,18 +19,20 @@ interface DetailsMvpView : BaseView {
                        calendar: Calendar,
                        maxDate: Long,
                        minDate: Long)
+
     fun setImageUri(imageUri: Uri?)
     fun showImagePicker(intent: Intent?)
     fun navigateToBirthdayScreen(bundle: Bundle)
 }
 
-class DetailsPresenter @Inject constructor(private val imagePicker: ImagePicker) : BasePresenter<DetailsMvpView>() {
+class DetailsPresenter @Inject constructor(private val imagePicker: ImagePicker) :
+    BasePresenter<DetailsMvpView>() {
 
     private var birthdayDateTimestamp = 0L
 
     override fun attachView(view: DetailsMvpView) {
         super.attachView(view)
-        if(imagePicker.imageUri != null) {
+        if (imagePicker.imageUri != null) {
             mvpView?.setImageUri(imagePicker.imageUri)
         }
     }
@@ -63,7 +66,7 @@ class DetailsPresenter @Inject constructor(private val imagePicker: ImagePicker)
     }
 
     fun imageFromPickerArrived(imageUri: Uri?) {
-        if(imageUri != null) {
+        if (imageUri != null) {
             imagePicker.imageUri = imageUri
         }
         imagePicker.imageUri?.let {
@@ -73,9 +76,17 @@ class DetailsPresenter @Inject constructor(private val imagePicker: ImagePicker)
 
     fun navigateToBirthdayScreenClicked(fullName: String) {
         val bundle = Bundle()
-        val birthdayDetails = BirthdayDetails(fullName, birthdayDateTimestamp, imagePicker.imageUri)
+        val birthdayScreenStyle = getBirthdayScreenStyle()
+        val birthdayDetails = BirthdayDetails(fullName,
+            birthdayDateTimestamp,
+            birthdayScreenStyle,
+            imagePicker.imageUri)
         bundle.putParcelable(BIRTHDAY_DETAILS, birthdayDetails)
         mvpView?.navigateToBirthdayScreen(bundle)
+    }
+
+    fun getBirthdayScreenStyle(): BirthdayScreenStyle {
+        return BirthdayScreenStyle.values().random()
     }
 
     companion object {

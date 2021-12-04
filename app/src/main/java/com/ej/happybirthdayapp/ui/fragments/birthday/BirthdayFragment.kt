@@ -9,23 +9,24 @@ import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.ej.happybirthdayapp.R
 import com.ej.happybirthdayapp.databinding.FragmentBirthdayBinding
 import com.ej.happybirthdayapp.model.BirthdayDetails
+import com.ej.happybirthdayapp.model.BirthdayScreenElements
 import com.ej.happybirthdayapp.ui.base.BaseFragment
 import com.ej.happybirthdayapp.ui.base.BasePresenter
 import com.ej.happybirthdayapp.ui.base.viewBinding
 import com.ej.happybirthdayapp.ui.fragments.details.DetailsPresenter.Companion.BIRTHDAY_DETAILS
-import com.ej.happybirthdayapp.utils.ImagePicker
 import com.ej.happybirthdayapp.utils.getBitmapFromView
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class BirthdayFragment  : BaseFragment<BirthdayMvpView>(), BirthdayMvpView {
+class BirthdayFragment : BaseFragment<BirthdayMvpView>(), BirthdayMvpView {
 
     private val viewBinding by viewBinding(FragmentBirthdayBinding::bind)
 
@@ -84,7 +85,8 @@ class BirthdayFragment  : BaseFragment<BirthdayMvpView>(), BirthdayMvpView {
 
     override fun setBirthdayAge(age: Int) {
         val resources: Resources = requireActivity().resources
-        val resourceId: Int = resources.getIdentifier("age_number_$age", "drawable", requireActivity().packageName)
+        val resourceId: Int =
+            resources.getIdentifier("age_number_$age", "drawable", requireActivity().packageName)
         viewBinding.birthdayAge.setImageResource(resourceId)
     }
 
@@ -97,6 +99,17 @@ class BirthdayFragment  : BaseFragment<BirthdayMvpView>(), BirthdayMvpView {
             }
     }
 
+    override fun setScreenElements(elements: BirthdayScreenElements?) {
+        elements?.let {
+            viewBinding.birthdayContainer.setBackgroundResource(it.backgroundColor)
+            viewBinding.birthdayCameraIcon.setImageResource(it.cameraIcon)
+            viewBinding.birthdayImage.setImageResource(it.placeHolder)
+            viewBinding.birthdayBabyImageContainer.foreground =
+                AppCompatResources.getDrawable(requireActivity(), it.circleBorder)
+            viewBinding.birthdayImageBackground.setImageResource(it.background)
+        }
+    }
+
     override fun shareImage(image: Uri?) {
         val shareIntent = Intent(Intent.ACTION_SEND)
         shareIntent.type = "image/jpeg"
@@ -107,11 +120,7 @@ class BirthdayFragment  : BaseFragment<BirthdayMvpView>(), BirthdayMvpView {
 
     override fun setCroppedImage(imageUri: Uri?) {
         imageUri?.let {
-            Glide.with(this)
-                .load(imageUri)
-                .circleCrop()
-                .into(viewBinding.birthdayImage)
+            Glide.with(this).load(imageUri).circleCrop().into(viewBinding.birthdayImage)
         }
     }
-
 }
