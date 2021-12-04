@@ -27,6 +27,13 @@ class DetailsPresenter @Inject constructor(private val imagePicker: ImagePicker)
 
     private var birthdayDateTimestamp = 0L
 
+    override fun attachView(view: DetailsMvpView) {
+        super.attachView(view)
+        if(imagePicker.imageUri != null) {
+            mvpView?.setImageUri(imagePicker.imageUri)
+        }
+    }
+
     fun datePickerClicked() {
         val calendar = Calendar.getInstance()
         val date =

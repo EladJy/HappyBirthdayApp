@@ -86,7 +86,7 @@ class DetailsFragment : BaseFragment<DetailsMvpView>(), DetailsMvpView {
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH))
         datePickerDialog.datePicker.maxDate = maxDate
-        datePickerDialog.datePicker.maxDate = minDate
+        datePickerDialog.datePicker.minDate = minDate
         datePickerDialog.show()
     }
 
@@ -108,6 +108,6 @@ class DetailsFragment : BaseFragment<DetailsMvpView>(), DetailsMvpView {
     }
 
     override fun navigateToBirthdayScreen(bundle: Bundle) {
-        findNavController().navigate(R.id.birthdayFragment, bundle)
+        findNavController().navigate(R.id.action_detailsFragment_to_birthdayFragment, bundle)
     }
 }
